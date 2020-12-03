@@ -92,11 +92,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92740DD925795BCB0039FE1C /* Build configuration list for PBXNativeTarget "xpertaiAssigment" */;
 			buildPhases = (
-				926ED75E2579980100190DCF /* ShellScript */,
 				4DDBF7680C4FD5F999CCAA0F /* [CP] Check Pods Manifest.lock */,
+				926ED75E2579980100190DCF /* ShellScript */,
 				92740DC125795BC90039FE1C /* Sources */,
 				92740DC225795BC90039FE1C /* Frameworks */,
 				92740DC325795BC90039FE1C /* Resources */,
+				D7CEF0D9B7518E95AE9AF7FF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +190,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+		D7CEF0D9B7518E95AE9AF7FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-xpertaiAssigment/Pods-xpertaiAssigment-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-xpertaiAssigment/Pods-xpertaiAssigment-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-xpertaiAssigment/Pods-xpertaiAssigment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
