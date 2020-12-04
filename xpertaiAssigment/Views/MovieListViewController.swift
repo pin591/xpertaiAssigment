@@ -8,11 +8,12 @@
 import UIKit
 import SnapKit
 
-class MovieListViewController: UIViewController, MovieListViewProtocol, UITableViewDelegate, UITableViewDataSource  {
+class MovieListViewController: UIViewController, MovieListViewProtocol, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate  {
 
     var presenter: MovieListPresenterProtocol?
     let tableView = UITableView()
     let cellId = "movieCell"
+    var selectedCells = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +45,17 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
         cell.textLabel?.text = movie?.title
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = presenter?.getMovieAtIndex(index: indexPath.row)
-        NSLog("You selected cell : \(String(describing: movie?.title))")
+        if let selectedMovie = movie?.title {
+            selectedCells.insert(contentsOf: selectedMovie, at: selectedCells.endIndex)
+            selectedCells.insert(contentsOf: ", ", at: selectedCells.endIndex)
+        }
+        
+        var popUpViewController: PopUpWiewController!
+        popUpViewController = PopUpWiewController(title: "Selected Items", text: selectedCells, buttontext: "OK")
+        self.present(popUpViewController, animated: true, completion: nil)
+        NSLog("\(String(describing: selectedCells))")
     }
 }

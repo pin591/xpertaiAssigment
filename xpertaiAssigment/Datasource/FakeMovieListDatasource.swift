@@ -13,7 +13,7 @@ class FakeMovieListDatasource: FakeMovieListDataSourceProtocol {
     init() {
         let movie1 = Movie(title: "Harry Potter", year: "2020", rate: 4.0, posterImage: "cover1", overview: "Harry potter overview")
         let movie2 = Movie(title: "Star wars", year: "1990", rate: 3.0, posterImage: "cover2", overview: "Star wars overview")
-        let movie3 = Movie(title: "Pretty woman ", year: "1995", rate: 3.0, posterImage: "cover3", overview: "Pretty woman overview")
+        let movie3 = Movie(title: "Pretty woman", year: "1995", rate: 3.0, posterImage: "cover3", overview: "Pretty woman overview")
         let movie4 = Movie(title: "Matrix", year: "2020", rate: 2.0, posterImage: "cover4", overview: "Matrix overview")
 
         movies.append(movie1)
