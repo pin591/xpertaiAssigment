@@ -10,6 +10,7 @@ import Foundation
 protocol MovieListInteractorProtocol {
     
     var repository: MovieListRepositoryProtocol? { get set}
+    
     func getMovieAtIndex(index: Int) -> Movie?
     func getMoviesNumber() -> Int?
 

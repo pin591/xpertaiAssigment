@@ -16,7 +16,7 @@ class MovieListRouter: MovieListProtocol {
         let presenter = MovieListPresenter()
         let interactor = MovieListInteractor()
         let repository = MovieListRepository()
-        let datasource = FakeMovieListDatasource()
+        let datasource = ApiMovieListDataSource()
 
         view.presenter = presenter
         presenter.interactor = interactor

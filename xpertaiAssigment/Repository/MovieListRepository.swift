@@ -8,7 +8,8 @@
 import Foundation
 
 class MovieListRepository: MovieListRepositoryProtocol {
-    var datasource: FakeMovieListDataSourceProtocol?
+    
+    var datasource: ApiMovieListDatasourceProtocol?
 
     func getMovieAtIndex(index: Int) -> Movie? {
        return datasource?.getMovieAtIndex(index: index)
