@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  MovieListViewController.swift
 //  xpertaiAssigment
 //
 //  Created by Ana Rebollo Pin on 03/12/2020.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class MovieListViewController: UIViewController, MovieListViewProtocol {
+
+    var presenter: MovieListPresenterProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.green
     }
 }
