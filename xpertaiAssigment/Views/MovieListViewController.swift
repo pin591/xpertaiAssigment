@@ -6,13 +6,26 @@
 //
 
 import UIKit
+import SnapKit
 
 class MovieListViewController: UIViewController, MovieListViewProtocol {
 
     var presenter: MovieListPresenterProtocol?
+    let tableView = UITableView()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.green
+    override func loadView() {
+        super.loadView()
+        setupTableViewContrains()
+    }
+    
+    func setupTableViewContrains() {
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
     }
 }
