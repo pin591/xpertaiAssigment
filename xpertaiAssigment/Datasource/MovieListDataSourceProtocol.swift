@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol MovieListDataSourceProtocol {
+protocol Fake {
     func getMovieAtIndex(index: Int) -> Movie?
     func getMoviesNumber() -> Int?
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FakeMovieListDatasource: MovieListDataSourceProtocol {
+class FakeMovieListDatasource: FakeMovieListDataSourceProtocol {
     var movies = [Movie]()
 
     init() {
