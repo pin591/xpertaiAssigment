@@ -18,6 +18,8 @@
 		926ED79B257A6C2B00190DCF /* MovieListRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926ED79A257A6C2B00190DCF /* MovieListRepositoryProtocol.swift */; };
 		926ED7A0257A6D5200190DCF /* FakeMovieListDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926ED79F257A6D5200190DCF /* FakeMovieListDatasource.swift */; };
 		926ED7A3257A6D6100190DCF /* FakeMovieListDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926ED7A2257A6D6100190DCF /* FakeMovieListDataSourceProtocol.swift */; };
+		926ED7B3257A8FC500190DCF /* MovieListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926ED7B2257A8FC500190DCF /* MovieListRouter.swift */; };
+		926ED7B8257A8FE900190DCF /* MovieListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926ED7B7257A8FE900190DCF /* MovieListProtocol.swift */; };
 		92740DC925795BC90039FE1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92740DC825795BC90039FE1C /* AppDelegate.swift */; };
 		92740DCB25795BC90039FE1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92740DCA25795BC90039FE1C /* SceneDelegate.swift */; };
 		92740DCD25795BC90039FE1C /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92740DCC25795BC90039FE1C /* MovieListViewController.swift */; };
@@ -38,6 +40,8 @@
 		926ED79A257A6C2B00190DCF /* MovieListRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListRepositoryProtocol.swift; sourceTree = "<group>"; };
 		926ED79F257A6D5200190DCF /* FakeMovieListDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMovieListDatasource.swift; sourceTree = "<group>"; };
 		926ED7A2257A6D6100190DCF /* FakeMovieListDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeMovieListDataSourceProtocol.swift; sourceTree = "<group>"; };
+		926ED7B2257A8FC500190DCF /* MovieListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListRouter.swift; sourceTree = "<group>"; };
+		926ED7B7257A8FE900190DCF /* MovieListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListProtocol.swift; sourceTree = "<group>"; };
 		92740DC525795BC90039FE1C /* xpertaiAssigment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xpertaiAssigment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92740DC825795BC90039FE1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92740DCA25795BC90039FE1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,15 @@
 			path = Datasource;
 			sourceTree = "<group>";
 		};
+		926ED7B6257A8FD500190DCF /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				926ED7B2257A8FC500190DCF /* MovieListRouter.swift */,
+				926ED7B7257A8FE900190DCF /* MovieListProtocol.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		92740DBC25795BC90039FE1C = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +153,7 @@
 		92740DC725795BC90039FE1C /* xpertaiAssigment */ = {
 			isa = PBXGroup;
 			children = (
+				926ED7B6257A8FD500190DCF /* Router */,
 				926ED77E2579AEA700190DCF /* Views */,
 				926ED7862579AFA500190DCF /* Presenter */,
 				926ED78E257A698400190DCF /* Interactor */,
@@ -300,8 +314,10 @@
 				926ED794257A69E500190DCF /* MovieListInteractorProtocol.swift in Sources */,
 				926ED7792579AA4700190DCF /* Movie.swift in Sources */,
 				926ED797257A6C0200190DCF /* MovieListRepository.swift in Sources */,
+				926ED7B8257A8FE900190DCF /* MovieListProtocol.swift in Sources */,
 				92740DCB25795BC90039FE1C /* SceneDelegate.swift in Sources */,
 				926ED7882579B01D00190DCF /* MovieListPresenterProtocol.swift in Sources */,
+				926ED7B3257A8FC500190DCF /* MovieListRouter.swift in Sources */,
 				926ED7802579AEF900190DCF /* MovieListViewProtocol.swift in Sources */,
 				926ED7A3257A6D6100190DCF /* FakeMovieListDataSourceProtocol.swift in Sources */,
 				926ED79B257A6C2B00190DCF /* MovieListRepositoryProtocol.swift in Sources */,

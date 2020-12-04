@@ -18,7 +18,7 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
         super.viewDidLoad()
         setupTableView()
     }
-  
+
     func setupTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.dataSource = self
@@ -34,12 +34,14 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return presenter?.getMoviesNumber() ?? 0
+        //return 10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = "hola"
+        let movie = presenter?.getMovieAtIndex(index: indexPath.row)
+        cell.textLabel?.text = movie?.title
         return cell
     }
 }

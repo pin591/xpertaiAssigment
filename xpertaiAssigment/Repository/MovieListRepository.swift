@@ -11,7 +11,7 @@ class MovieListRepository: MovieListRepositoryProtocol {
     var datasource: FakeMovieListDataSourceProtocol?
 
     func getMovieAtIndex(index: Int) -> Movie? {
-        return datasource?.getMovieAtIndex(index: index)
+       return datasource?.getMovieAtIndex(index: index)
     }
 
     func getMoviesNumber() -> Int? {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MoviewListPresenter: MovieListPresenterProtocol {
+class MovieListPresenter: MovieListPresenterProtocol {
     var interactor: MovieListInteractorProtocol?
 
     func getMovieAtIndex(index: Int) -> Movie? {
