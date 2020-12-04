@@ -44,4 +44,9 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
         cell.textLabel?.text = movie?.title
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = presenter?.getMovieAtIndex(index: indexPath.row)
+        NSLog("You selected cell : \(String(describing: movie?.title))")
+    }
 }
