@@ -8,17 +8,21 @@
 import UIKit
 import SnapKit
 
-class MovieListViewController: UIViewController, MovieListViewProtocol {
+class MovieListViewController: UIViewController, MovieListViewProtocol, UITableViewDelegate, UITableViewDataSource  {
 
     var presenter: MovieListPresenterProtocol?
     let tableView = UITableView()
+    let cellId = "movieCell"
 
-    override func loadView() {
-        super.loadView()
-        setupTableViewContrains()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTableView()
     }
-    
-    func setupTableViewContrains() {
+  
+    func setupTableView() {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.dataSource = self
+        tableView.delegate = self
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.snp.makeConstraints {
@@ -27,5 +31,15 @@ class MovieListViewController: UIViewController, MovieListViewProtocol {
             $0.bottom.equalToSuperview()
             $0.trailing.equalToSuperview()
         }
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        cell.textLabel?.text = "hola"
+        return cell
     }
 }

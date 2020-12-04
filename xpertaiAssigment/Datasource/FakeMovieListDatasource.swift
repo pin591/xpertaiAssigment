@@ -10,7 +10,7 @@ import Foundation
 class FakeMovieListDatasource: FakeMovieListDataSourceProtocol {
     var movies = [Movie]()
 
-    init() {
+    func getMovieAtIndex(index: Int) -> Movie? {
         let movie1 = Movie(title: "Harry Potter", year: "2020", rate: 4.0, posterImage: "cover1", overview: "Harry potter overview")
         let movie2 = Movie(title: "Star wars", year: "1990", rate: 3.0, posterImage: "cover2", overview: "Star wars overview")
         let movie3 = Movie(title: "Pretty woman ", year: "1995", rate: 3.0, posterImage: "cover3", overview: "Pretty woman overview")
@@ -20,9 +20,7 @@ class FakeMovieListDatasource: FakeMovieListDataSourceProtocol {
         movies.append(movie2)
         movies.append(movie3)
         movies.append(movie4)
-    }
-    
-    func getMovieAtIndex(index: Int) -> Movie? {
+        
         return movies[index]
     }
 
