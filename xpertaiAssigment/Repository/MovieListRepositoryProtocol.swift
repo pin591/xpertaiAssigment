@@ -8,8 +8,11 @@
 import Foundation
 
 protocol MovieListRepositoryProtocol {
+    
     var datasource: ApiMovieListDatasourceProtocol? { get set}
+    var interactor: MovieListInteractorProtocol? {get set}
     
     func getMovieAtIndex(index: Int) -> Movie?
     func getMoviesNumber() -> Int?
+    func reloadview()
 }

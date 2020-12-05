@@ -10,6 +10,7 @@ import Foundation
 class MovieListRepository: MovieListRepositoryProtocol {
     
     var datasource: ApiMovieListDatasourceProtocol?
+    var interactor: MovieListInteractorProtocol?
 
     func getMovieAtIndex(index: Int) -> Movie? {
        return datasource?.getMovieAtIndex(index: index)
@@ -17,5 +18,9 @@ class MovieListRepository: MovieListRepositoryProtocol {
 
     func getMoviesNumber() -> Int? {
         return datasource?.getMoviesNumber()
+    }
+    
+    func reloadview() {
+        interactor?.reloadview()
     }
 }

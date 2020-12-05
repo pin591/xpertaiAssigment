@@ -19,9 +19,13 @@ class MovieListRouter: MovieListProtocol {
         let datasource = ApiMovieListDataSource()
 
         view.presenter = presenter
+        presenter.view = view
         presenter.interactor = interactor
+        interactor.presenter = presenter
         interactor.repository = repository
+        repository.interactor = interactor
         repository.datasource = datasource
+        datasource.repository = repository
         return view
     }
 }

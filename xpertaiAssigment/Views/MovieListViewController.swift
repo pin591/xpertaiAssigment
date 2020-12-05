@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class MovieListViewController: UIViewController, MovieListViewProtocol, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate  {
-
+  
     var presenter: MovieListPresenterProtocol?
     let tableView = UITableView()
     let cellId = "movieCell"
@@ -36,7 +36,7 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
             $0.trailing.equalToSuperview()
         }
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.getMoviesNumber() ?? 0
     }
@@ -61,5 +61,11 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
         popUpViewController = PopUpWiewController(title: "Selected Items", text: selectedCells, buttontext: "OK")
         self.present(popUpViewController, animated: true, completion: nil)
         NSLog("\(String(describing: selectedCells))")
+    }
+    
+    func reloadview() {
+        DispatchQueue.main.async { [unowned self] in
+            tableView.reloadData()
+        }
     }
 }

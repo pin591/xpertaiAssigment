@@ -9,4 +9,6 @@ import Foundation
 
 protocol MovieListViewProtocol {
     var presenter: MovieListPresenterProtocol? { get set }
+    
+    func reloadview()
 }

@@ -10,6 +10,9 @@ import Foundation
 protocol MovieListPresenterProtocol {
     
     var interactor: MovieListInteractorProtocol? { get set }
+    var view: MovieListViewProtocol? { get set }
+
     func getMovieAtIndex(index: Int) -> Movie?
     func getMoviesNumber() -> Int?
+    func reloadview()
 }

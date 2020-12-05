@@ -8,7 +8,9 @@
 import Foundation
 
 class MovieListPresenter: MovieListPresenterProtocol {
+    
     var interactor: MovieListInteractorProtocol?
+    var view: MovieListViewProtocol?
 
     func getMovieAtIndex(index: Int) -> Movie? {
         return interactor?.getMovieAtIndex(index: index)
@@ -16,5 +18,9 @@ class MovieListPresenter: MovieListPresenterProtocol {
 
     func getMoviesNumber() -> Int? {
         return interactor?.getMoviesNumber()
+    }
+    
+    func reloadview() {
+        view?.reloadview()
     }
 }

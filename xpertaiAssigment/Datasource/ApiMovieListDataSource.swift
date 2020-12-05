@@ -9,21 +9,24 @@ import Foundation
 
 class ApiMovieListDataSource: ApiMovieListDatasourceProtocol {
     
+    var repository: MovieListRepositoryProtocol?
+    
     var movies = [Movie]()
-
+    var page = 1
+    
     var dataTask: URLSessionDataTask?
-    let popularMoviesURL = "https://api.themoviedb.org/3/movie/popular?api_key=4e0be2c22f7268edffde97481d49064a&language=en-US&page=1"
     lazy var configuration: URLSessionConfiguration = URLSessionConfiguration.default
     lazy var session: URLSession = URLSession(configuration: self.configuration)
 
     init() {
-        downloadJSONFromURL()
+        fetchmovies()
     }
 
-    func downloadJSONFromURL() {
+    func fetchmovies() {
         if dataTask != nil {
             dataTask?.cancel()
         }
+        let popularMoviesURL = "https://api.themoviedb.org/3/movie/popular?api_key=4e0be2c22f7268edffde97481d49064a&language=en-US&page=\(page)"
 
         if let url = URL(string: popularMoviesURL) {
             let request = URLRequest(url: url)
@@ -35,6 +38,7 @@ class ApiMovieListDataSource: ApiMovieListDatasourceProtocol {
                             if let data = data {
                                 do {
                                     let callResult = try JSONDecoder().decode(Movies.self, from: data)
+                                    print(callResult)
                                     for movie in callResult.movies {
                                         self.mapDTOInModel(movie: movie)
                                     }
@@ -62,9 +66,29 @@ class ApiMovieListDataSource: ApiMovieListDatasourceProtocol {
                                  overview: movie.overview)
 
         self.movies.append(currentMovie)
+        repository?.reloadview()
+
     }
     
+    func isPaginationNeeded(indexpath : Int) -> Bool {
+           if indexpath == movies.count - 1 {
+               return true
+           }
+           return false
+       }
+       
+       func loadNewPage() {
+           page += 1
+       }
+    
     func getMovieAtIndex(index: Int) -> Movie? {
+        print ("index: \(index)")
+        print ("movies size: \(movies.count - 1)")
+
+        if isPaginationNeeded(indexpath: index) {
+            loadNewPage()
+            fetchmovies()
+        }
         return movies[index]
     }
 
