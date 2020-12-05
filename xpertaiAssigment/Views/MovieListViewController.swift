@@ -17,11 +17,14 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+//        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 600
         setupTableView()
     }
 
     func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(MovieCustomCell.self, forCellReuseIdentifier: cellId)
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
@@ -39,10 +42,12 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        let movie = presenter?.getMovieAtIndex(index: indexPath.row)
-        cell.textLabel?.text = movie?.title
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? MovieCustomCell {
+            let movie = presenter?.getMovieAtIndex(index: indexPath.row)
+            cell.setupCell(movie: movie)
+            return cell
+        }
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
