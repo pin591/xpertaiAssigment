@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieCustomCell: UITableViewCell {
     
@@ -28,12 +29,10 @@ class MovieCustomCell: UITableViewCell {
      }()
     
     private let coverImage: UIImageView = {
-        if let image = UIImage(named: "cover") {
-            let imageView = UIImageView(image: image)
-            imageView.contentMode = .scaleToFill
-            return imageView
-        }
-        return UIImageView()
+        let image = UIImage()
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .scaleToFill
+        return imageView
      }()
 
     private let verticalStackView: UIStackView = {
@@ -74,6 +73,12 @@ class MovieCustomCell: UITableViewCell {
     func setupCell(movie: Movie?) {
         movieTittleLabel.text = movie?.title
         movieOverviewLabel.text = movie?.overview
+
+        if let posterPath = movie?.posterImage {
+            let urlString = "https://image.tmdb.org/t/p/w500/\(posterPath)"
+            let url = URL(string: urlString)!
+            coverImage.kf.setImage(with: url)
+        }
     }
     
     required init?(coder: NSCoder) {

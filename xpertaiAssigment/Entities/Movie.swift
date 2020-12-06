@@ -26,6 +26,6 @@ struct Movie: Decodable {
         case title, overview
         case year = "release_date"
         case rate = "vote_average"
-        case posterImage = ""
+        case posterImage = "poster_path"
     }
 }

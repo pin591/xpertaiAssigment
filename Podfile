@@ -6,6 +6,7 @@ target 'xpertaiAssigment' do
   use_frameworks!
   pod 'SwiftLint'
   pod 'SnapKit'
+  pod 'Kingfisher'
 
   # Pods for xpertaiAssigment
 
