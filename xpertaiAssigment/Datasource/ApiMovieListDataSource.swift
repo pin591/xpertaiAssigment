@@ -38,7 +38,6 @@ class ApiMovieListDataSource: ApiMovieListDatasourceProtocol {
                             if let data = data {
                                 do {
                                     let callResult = try JSONDecoder().decode(Movies.self, from: data)
-                                    print(callResult)
                                     for movie in callResult.movies {
                                         self.mapDTOInModel(movie: movie)
                                     }
@@ -69,21 +68,19 @@ class ApiMovieListDataSource: ApiMovieListDatasourceProtocol {
         repository?.reloadview()
 
     }
-    
+
     func isPaginationNeeded(indexpath : Int) -> Bool {
            if indexpath == movies.count - 1 {
                return true
            }
            return false
        }
-       
+
        func loadNewPage() {
            page += 1
        }
-    
+
     func getMovieAtIndex(index: Int) -> Movie? {
-        print ("index: \(index)")
-        print ("movies size: \(movies.count - 1)")
 
         if isPaginationNeeded(indexpath: index) {
             loadNewPage()

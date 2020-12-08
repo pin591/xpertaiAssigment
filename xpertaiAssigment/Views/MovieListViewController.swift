@@ -60,7 +60,6 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
         var popUpViewController: PopUpWiewController!
         popUpViewController = PopUpWiewController(title: "Selected Items", text: selectedCells, buttontext: "OK")
         self.present(popUpViewController, animated: true, completion: nil)
-        NSLog("\(String(describing: selectedCells))")
     }
     
     func reloadview() {

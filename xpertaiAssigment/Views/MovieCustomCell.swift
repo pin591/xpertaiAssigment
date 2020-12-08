@@ -10,7 +10,7 @@ import Kingfisher
 
 class MovieCustomCell: UITableViewCell {
     
-    private let movieTittleLabel: UILabel = {
+    private let movieTittleAndReleaseYearLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -18,7 +18,7 @@ class MovieCustomCell: UITableViewCell {
         label.numberOfLines = 0
         return label
      }()
-    
+
     private let movieOverviewLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -27,7 +27,7 @@ class MovieCustomCell: UITableViewCell {
         label.numberOfLines = 0
         return label
      }()
-    
+
     private let coverImage: UIImageView = {
         let image = UIImage()
         let imageView = UIImageView(image: image)
@@ -50,10 +50,10 @@ class MovieCustomCell: UITableViewCell {
         stack.distribution = .equalSpacing
         return stack
      }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        verticalStackView.addArrangedSubview(movieTittleLabel)
+        verticalStackView.addArrangedSubview(movieTittleAndReleaseYearLabel)
         verticalStackView.addArrangedSubview(movieOverviewLabel)
         addSubview(coverImage)
         addSubview(verticalStackView)
@@ -71,7 +71,12 @@ class MovieCustomCell: UITableViewCell {
         }
     }
     func setupCell(movie: Movie?) {
-        movieTittleLabel.text = movie?.title
+        if let title = movie?.title, let releaseDate = movie?.year {
+            let index = releaseDate.index(releaseDate.startIndex, offsetBy: 4)
+            let realeaseYear = releaseDate.prefix(upTo: index)
+
+            movieTittleAndReleaseYearLabel.text =  "\(title) (\(realeaseYear))"
+        }
         movieOverviewLabel.text = movie?.overview
 
         if let posterPath = movie?.posterImage {
@@ -80,7 +85,7 @@ class MovieCustomCell: UITableViewCell {
             coverImage.kf.setImage(with: url)
         }
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
