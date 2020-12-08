@@ -14,12 +14,11 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
     let tableView = UITableView()
     let cellId = "movieCell"
     var selectedCells = String()
+    var selectedElements = [String]()
+    var firstElement = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 600
         setupTableView()
     }
 
@@ -36,7 +35,7 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
             $0.trailing.equalToSuperview()
         }
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.getMoviesNumber() ?? 0
     }
@@ -52,16 +51,22 @@ class MovieListViewController: UIViewController, MovieListViewProtocol, UITableV
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = presenter?.getMovieAtIndex(index: indexPath.row)
+
         if let selectedMovie = movie?.title {
-            selectedCells.insert(contentsOf: selectedMovie, at: selectedCells.endIndex)
-            selectedCells.insert(contentsOf: ", ", at: selectedCells.endIndex)
+            if firstElement {
+                selectedCells.insert(contentsOf: selectedMovie, at: selectedCells.endIndex)
+                firstElement = false
+            }
+            else {
+                selectedCells.insert(contentsOf: ", ", at: selectedCells.endIndex)
+                selectedCells.insert(contentsOf: selectedMovie, at: selectedCells.endIndex)
+            }
         }
-        
         var popUpViewController: PopUpWiewController!
         popUpViewController = PopUpWiewController(title: "Selected Items", text: selectedCells, buttontext: "OK")
         self.present(popUpViewController, animated: true, completion: nil)
     }
-    
+
     func reloadview() {
         DispatchQueue.main.async { [unowned self] in
             tableView.reloadData()
