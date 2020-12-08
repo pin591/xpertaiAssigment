@@ -27,6 +27,15 @@ class MovieCustomCell: UITableViewCell {
         label.numberOfLines = 0
         return label
      }()
+    
+    private let movieRateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        return label
+     }()
 
     private let coverImage: UIImageView = {
         let image = UIImage()
@@ -35,37 +44,40 @@ class MovieCustomCell: UITableViewCell {
         return imageView
      }()
 
-    private let verticalStackView: UIStackView = {
+    private let titleAndOverviewStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 2
         stack.distribution = .equalSpacing
         return stack
      }()
-    
-    private let horitzontalstackView: UIStackView = {
+    private let imageAndRateStack: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 5
+        stack.axis = .vertical
+        stack.spacing = 15
         stack.distribution = .equalSpacing
         return stack
      }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        verticalStackView.addArrangedSubview(movieTittleAndReleaseYearLabel)
-        verticalStackView.addArrangedSubview(movieOverviewLabel)
-        addSubview(coverImage)
-        addSubview(verticalStackView)
+        titleAndOverviewStack.addArrangedSubview(movieTittleAndReleaseYearLabel)
+        titleAndOverviewStack.addArrangedSubview(movieOverviewLabel)
+        addSubview(titleAndOverviewStack)
         
-        coverImage.snp.makeConstraints {
+        imageAndRateStack.addArrangedSubview(coverImage)
+        imageAndRateStack.addArrangedSubview(movieRateLabel)
+        addSubview(imageAndRateStack)
+
+        
+        imageAndRateStack.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(10)
             $0.height.equalTo(100)
             $0.width.equalTo(100)
             $0.centerY.equalToSuperview()
         }
 
-        verticalStackView.snp.makeConstraints {
+        titleAndOverviewStack.snp.makeConstraints {
             $0.bottom.top.trailing.equalToSuperview().inset(10)
             $0.leading.equalTo(coverImage.snp.trailing).inset(-10)
         }
@@ -78,7 +90,10 @@ class MovieCustomCell: UITableViewCell {
             movieTittleAndReleaseYearLabel.text =  "\(title) (\(realeaseYear))"
         }
         movieOverviewLabel.text = movie?.overview
-
+        if let rate = movie?.rate {
+            let rateString = String(rate)
+            movieRateLabel.text = "Rate: \(rateString)"
+        }
         if let posterPath = movie?.posterImage {
             let urlString = "https://image.tmdb.org/t/p/w500/\(posterPath)"
             let url = URL(string: urlString)!
